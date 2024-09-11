@@ -1,0 +1,85 @@
+body {
+  background: rgb(8, 0, 31);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(100deg, rgba(8, 0, 31, 1) 0%, rgba(20, 20, 184, 1) 75%, rgba(75, 6, 110, 1) 100%);
+  color: #fff;
+}
+
+.app {
+  justify-content: center;
+}
+
+.title {
+  margin: 50px 0px 50px 0px;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 20px 14px 20px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+}
+
+.buttons-container {
+  box-shadow: 20px 14px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background-color: #fff;
+  width: 80%;
+  margin: auto;
+  color: #000;
+
+  .elements {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 5%;
+    padding: 0px 0px 40px 0px;
+  }
+}
+
+.cards-container {
+  box-shadow: 20px 14px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background-color: #fff;
+  width: 80%;
+  margin: auto;
+  color: #000;
+
+  .elements {
+    display: flex;
+    margin: 0px 3%;
+    justify-content: space-between;
+    padding: 0px 0px 40px 0px;
+  }
+}
+
+.modals-container {
+  box-shadow: 20px 14px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background-color: #fff;
+  width: 80%;
+  margin: auto;
+  color: #000;
+
+  .elements {
+    display: flex;
+    margin: 0px 5%;
+    justify-content: space-between;
+    padding: 0px 0px 40px 0px;
+  }
+}
+
+.element {
+  max-width: 15%;
+  overflow: auto;
+}
+
+.divider {
+  border-left: 2px solid #cccccc46;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.show-use-case-button {
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+}
