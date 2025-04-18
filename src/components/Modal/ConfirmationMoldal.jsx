@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import CustomButton from '../Button/Button';
 import closeIcon from '../../assets/icons/close.svg';
 
-const MyModal = ({ show, onClose, title, modalBodyDOM, variant = 'confirmation', onConfirm, onCancel }) => {
+const MyModal = ({ show, onClose, title, modalBodyDOM, variant, onConfirm, onCancel }) => {
+    console.log(variant)
     return (
         <>
             {show ? (
                 <div className="modal fade show d-block">
                     <div className="modal-dialog">
                         <div className="modal-content">
-                            <div className="modal-header">
+                            <div className={variant === 'delete' ? "modal-header danger" : "modal-header"}>
                                 <h5 className="modal-title">{title}</h5>
                                 <CustomButton
                                     variant='tertiary'
@@ -36,8 +37,7 @@ const MyModal = ({ show, onClose, title, modalBodyDOM, variant = 'confirmation',
                                             title="Delete"
                                             handleOnClick={onConfirm}
                                         /> : variant === 'informative' ?
-                                            null
-                                            :
+                                            null :
                                             <CustomButton
                                                 title="Confirm"
                                                 handleOnClick={onConfirm}

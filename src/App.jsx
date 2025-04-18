@@ -1,8 +1,9 @@
-import CustomButton from './components/Button/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CustomButton from './components/Button/Button';
 import { useState } from 'react';
 import StaticCard from './components/Cards/StaticCard';
 import MyModal from './components/Modal/ConfirmationMoldal';
+import LiveMusic from './components/LiveMusicLines/LiveMusic.tsx';
 
 import './App.scss';
 
@@ -27,9 +28,9 @@ const App = () => {
 
   const handleConfirm = () => {
     console.log('Confirmed');
-    setShowConfirmationModal(false); // Close the modal after confirming
-    setShowDeleteModal(false); // Close delete modal if it was open
-    setShowInformativeModal(false); // Close informative modal if it was open
+    setShowConfirmationModal(false);
+    setShowDeleteModal(false);
+    setShowInformativeModal(false);
   };
 
   const handleCancel = () => {
@@ -49,9 +50,10 @@ const App = () => {
 
   return (
     <div className="app">
-      <h3 className='title d-flex justify-content-center'>
+      <h3 className='title'>
         Here you can see all the components that I have created
       </h3>
+      <LiveMusic className='w-100' />
       <div className='buttons-container mt-4 mb-4'>
         <h3 className='p-4 d-flex justify-content-center'>
           Buttons
@@ -171,6 +173,7 @@ const App = () => {
             key='deleteModal'
             show={showDeleteModal}
             variant='delete'
+            className='danger'
             modalBodyDOM={<>Requests user approval before permanently deleting content, often providing a clear warning about the irreversibility of the action</>}
             title={'Delete Modal'}
             onClose={handleToggleDeleteModal}
