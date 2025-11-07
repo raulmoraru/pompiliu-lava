@@ -1,0 +1,351 @@
+.animation-container {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.animation-content {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    max-width: 90vw;
+    max-height: 90vh;
+    border: 4px solid #222;
+    overflow: hidden;
+    cursor: default;
+    image-rendering: pixelated;
+}
+
+.pixel-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Sky */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    background: linear-gradient(to bottom, #87ceeb 0%, #98d8e8 50%, #b0e0e6 100%);
+    z-index: 1;
+}
+
+/* Grass */
+.grass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background: #7cb342;
+    background-image:
+        repeating-linear-gradient(90deg,
+            transparent,
+            transparent 2px,
+            rgba(106, 168, 79, 0.3) 2px,
+            rgba(106, 168, 79, 0.3) 4px),
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 3px,
+            rgba(85, 139, 47, 0.2) 3px,
+            rgba(85, 139, 47, 0.2) 6px);
+    z-index: 2;
+
+    /* Grass blades effect */
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 15px;
+        background: repeating-linear-gradient(90deg,
+                #8bc34a 0px,
+                #8bc34a 4px,
+                #7cb342 4px,
+                #7cb342 8px,
+                #689f38 8px,
+                #689f38 12px);
+    }
+}
+
+/* Moving Clouds - Pixel Art Style */
+.cloud {
+    position: absolute;
+    z-index: 3;
+    image-rendering: pixelated;
+
+    /* Simplified pixelated cloud - less pixelated */
+    width: 120px;
+    height: 60px;
+    background: #ffffff;
+    border-radius: 30px;
+    filter: contrast(1.1);
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        background: #ffffff;
+        border-radius: 50%;
+    }
+
+    &::before {
+        width: 80px;
+        height: 80px;
+        top: -40px;
+        left: 20px;
+    }
+
+    &::after {
+        width: 90px;
+        height: 70px;
+        top: -35px;
+        right: 20px;
+    }
+}
+
+/* Background clouds - bigger, slower, lower opacity */
+.cloud-bg-1 {
+    top: 10%;
+    left: -200px;
+    opacity: 0.4;
+    --cloud-scale: 2;
+    animation: moveCloudSlow 40s linear infinite;
+}
+
+.cloud-bg-2 {
+    top: 20%;
+    left: -250px;
+    opacity: 0.35;
+    --cloud-scale: 2.5;
+    animation: moveCloudSlow 45s linear infinite;
+    animation-delay: -10s;
+}
+
+.cloud-bg-3 {
+    top: 30%;
+    left: -300px;
+    opacity: 0.3;
+    --cloud-scale: 3;
+    animation: moveCloudSlow 50s linear infinite;
+    animation-delay: -20s;
+}
+
+/* Foreground clouds - normal size, faster, higher opacity */
+.cloud-1 {
+    top: 15%;
+    left: -150px;
+    opacity: 0.9;
+    --cloud-scale: 1.2;
+    animation: moveCloudFast 15s linear infinite;
+}
+
+.cloud-2 {
+    top: 25%;
+    left: -180px;
+    opacity: 0.85;
+    --cloud-scale: 1.3;
+    animation: moveCloudFast 18s linear infinite;
+    animation-delay: -3s;
+}
+
+.cloud-3 {
+    top: 35%;
+    left: -200px;
+    opacity: 0.8;
+    --cloud-scale: 1.4;
+    animation: moveCloudFast 20s linear infinite;
+    animation-delay: -6s;
+}
+
+.cloud-4 {
+    top: 45%;
+    left: -220px;
+    opacity: 0.75;
+    --cloud-scale: 1.1;
+    animation: moveCloudFast 22s linear infinite;
+    animation-delay: -9s;
+}
+
+.cloud-5 {
+    top: 55%;
+    left: -240px;
+    opacity: 0.7;
+    --cloud-scale: 1.2;
+    animation: moveCloudFast 25s linear infinite;
+    animation-delay: -12s;
+}
+
+@keyframes moveCloudSlow {
+    0% {
+        transform: translateX(0) scale(var(--cloud-scale, 1));
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 300px)) scale(var(--cloud-scale, 1));
+    }
+}
+
+@keyframes moveCloudFast {
+    0% {
+        transform: translateX(0) scale(var(--cloud-scale, 1));
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 200px)) scale(var(--cloud-scale, 1));
+    }
+}
+
+/* House */
+.house {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 100px;
+    background: #d2691e;
+    z-index: 5;
+    image-rendering: pixelated;
+    border: 2px solid #8b4513;
+}
+
+/* Roof */
+.roof {
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 40px solid #8b4513;
+    z-index: 6;
+}
+
+/* Chimney */
+.chimney {
+    position: absolute;
+    top: -50px;
+    right: 20px;
+    width: 20px;
+    height: 30px;
+    background: #654321;
+    z-index: 7;
+    border: 2px solid #4a2c1a;
+}
+
+/* Smoke */
+.smoke {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 8;
+    animation: smokeUp 3s ease-out infinite;
+}
+
+.smoke-1 {
+    animation-delay: 0s;
+}
+
+.smoke-2 {
+    animation-delay: 1s;
+}
+
+.smoke-3 {
+    animation-delay: 2s;
+}
+
+@keyframes smokeUp {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-60px) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Door */
+.door {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    background: #5a3e1b;
+    border: 2px solid #3d2813;
+    z-index: 6;
+}
+
+/* Windows */
+.window {
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background: #87ceeb;
+    border: 2px solid #654321;
+    z-index: 6;
+}
+
+.window-left {
+    left: 15px;
+}
+
+.window-right {
+    right: 15px;
+}
+
+/* Llama - Still to the left of house */
+.llama {
+    position: absolute;
+    bottom: 15%;
+    left: calc(50% - 120px);
+    width: 80px;
+    height: 80px;
+    image-rendering: pixelated;
+    z-index: 10;
+    transform: translateX(-100%);
+}
+
+.pixel-scene img {
+    position: absolute;
+    image-rendering: pixelated;
+}
+
+/* Text overlay */
+.title {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+}

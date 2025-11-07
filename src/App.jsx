@@ -4,6 +4,7 @@ import { useState } from 'react';
 import StaticCard from './components/Cards/StaticCard';
 import MyModal from './components/Modal/ConfirmationMoldal';
 import LiveMusic from './components/LiveMusicLines/LiveMusic.tsx';
+import Animation from './pages/Animation';
 
 import './App.scss';
 
@@ -13,6 +14,7 @@ const App = () => {
   const [showInformativeModal, setShowInformativeModal] = useState(false);
   const [hasExtraActions, setHasExtraActions] = useState(false);
   const [hasDelete, setHasDelete] = useState(false);
+  const [isAnimationVisible, setIsAnimationVisible] = useState(false);
 
   const handleToggleConfirmationModal = () => {
     setShowConfirmationModal(!showConfirmationModal);
@@ -48,13 +50,25 @@ const App = () => {
     setHasDelete(!hasDelete);
   }
 
+  const handleToggleAnimation = () => {
+    setIsAnimationVisible(!isAnimationVisible);
+  }
+
   return (
     <div className="app">
+      {isAnimationVisible && (
+        <Animation onClose={handleToggleAnimation} />
+      )}
       <h3 className='title'>
         Here you can see all the components that I have created
       </h3>
       <LiveMusic className='w-100' />
-      <div className='buttons-container mt-4 mb-4'>
+      <CustomButton
+        className='d-flex m-auto'
+        title='Toggle Animation'
+        handleOnClick={handleToggleAnimation}
+      />
+      <div className='buttons-container mt-4 mb-4 position-relative'>
         <h3 className='p-4 d-flex justify-content-center'>
           Buttons
         </h3>
