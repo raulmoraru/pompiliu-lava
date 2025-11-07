@@ -110,4 +110,24 @@
 
 .custom-button {
     align-items: center;
+
+    @media (max-width: 480px) {
+        font-size: 14px;
+    }
+}
+
+.primary,
+.secondary,
+.tertiary,
+.danger {
+    @media (max-width: 768px) {
+        padding: 0px 15px 0px 15px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 0px 12px 0px 12px;
+        height: 28px;
+        font-size: 12px;
+    }
 }

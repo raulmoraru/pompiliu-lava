@@ -15,6 +15,7 @@ const MyModal = ({ show, onClose, title, modalBodyDOM, variant, onConfirm, onCan
                             <div className={variant === 'delete' ? "modal-header danger" : "modal-header"}>
                                 <h5 className="modal-title">{title}</h5>
                                 <CustomButton
+                                    className='close-button'
                                     variant='tertiary'
                                     title={<img className='close' src={closeIcon} alt="Close" />}
                                     handleOnClick={onClose}
