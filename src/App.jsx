@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomButton from './components/Button/Button';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import StaticCard from './components/Cards/StaticCard';
 import MyModal from './components/Modal/ConfirmationMoldal';
 import LiveMusic from './components/LiveMusicLines/LiveMusic.tsx';
@@ -54,6 +54,10 @@ const App = () => {
     setIsAnimationVisible(!isAnimationVisible);
   }
 
+  useEffect(() => {
+    requestAnimationFrame(() => setIsAnimationVisible(true));
+  }, []);
+
   return (
     <div className="app">
       {isAnimationVisible && (
@@ -67,6 +71,7 @@ const App = () => {
         className='d-flex m-auto'
         title='Toggle Animation'
         handleOnClick={handleToggleAnimation}
+        style={{ zIndex: 100001, position: "relative" }}
       />
       <div className='buttons-container mt-4 mb-4 position-relative'>
         <h3 className='p-4 d-flex justify-content-center'>

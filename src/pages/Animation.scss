@@ -1,7 +1,7 @@
 .animation-container {
     position: fixed;
     inset: 0;
-    z-index: 99999;
+    z-index: 100002;
     background: #000;
     display: flex;
     justify-content: center;
@@ -212,7 +212,7 @@
 /* House */
 .house {
     position: absolute;
-    bottom: 15%;
+    bottom: 13%;
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
@@ -226,8 +226,8 @@
 /* Roof */
 .roof {
     position: absolute;
-    top: -30px;
-    left: -10px;
+    top: -40px;
+    left: -12px;
     width: 0;
     height: 0;
     border-left: 70px solid transparent;
@@ -239,12 +239,12 @@
 /* Chimney */
 .chimney {
     position: absolute;
-    top: -50px;
+    top: -45px;
     right: 20px;
     width: 20px;
     height: 30px;
     background: #654321;
-    z-index: 7;
+    z-index: 2;
     border: 2px solid #4a2c1a;
 }
 
@@ -326,14 +326,13 @@
 /* Llama - Still to the left of house */
 .llama {
     position: absolute;
-    bottom: 15%;
-    left: calc(50% - 120px);
     width: 80px;
-    height: 80px;
-    image-rendering: pixelated;
-    z-index: 10;
-    transform: translateX(-100%);
+    height: auto;
+    pointer-events: none;
+    bottom: 400px;
+    z-index: 9999; // ALWAYS ON TOP
 }
+
 
 .pixel-scene img {
     position: absolute;
@@ -348,4 +347,118 @@
     color: white;
     font-family: monospace;
     font-size: 14px;
+}
+
+.controls-overlay {
+    width: 214px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px; // allow full-width for space
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 9999;
+    font-family: "Arial", sans-serif;
+}
+
+.key-row {
+    display: flex;
+    gap: 5px;
+}
+
+.center-row {
+    justify-content: center;
+
+    .key {
+        width: 70px;
+    }
+}
+
+.full-width-row {
+    .key {
+        width: 100px;
+    }
+}
+
+.key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #333;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    min-width: 30px;
+    font-weight: bold;
+    box-shadow: 0 3px #999;
+    text-align: center;
+    user-select: none;
+    cursor: default;
+    transition: all 0.1s ease;
+}
+
+.key.pressed {
+    transform: translateY(2px);
+    box-shadow: 0 1px #999;
+    background: #ddd;
+}
+
+.key.space {
+    margin-top: 20px;
+    flex: 1; // full width of container
+    min-width: 0;
+}
+
+.animation-container {
+    position: fixed;
+    inset: 0;
+    z-index: 100002;
+    background: rgba(0, 0, 0, 0);
+    /* transparent initially */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.animation-container.visible {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.7);
+    /* fade in */
+}
+
+.animation-container.closing {
+    opacity: 0;
+    background: rgba(0, 0, 0, 0);
+    /* fade out */
+}
+
+.animation-content {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    max-width: 90vw;
+    max-height: 90vh;
+    border: 4px solid #222;
+    overflow: hidden;
+    cursor: default;
+    image-rendering: pixelated;
+
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.animation-container.visible .animation-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.animation-container.closing .animation-content {
+    transform: scale(0.8);
+    opacity: 0;
 }
